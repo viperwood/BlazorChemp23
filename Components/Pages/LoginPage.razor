@@ -1,0 +1,41 @@
+@page "/"
+@using Newtonsoft.Json
+@using BlazorApp2.Components.Models
+@inject NavigationManager NavigationMan
+@inherits LayoutComponentBase
+@rendermode InteractiveServer
+
+<div style="horiz-align: center">
+          <p hidden="@_a" style="text-align: center" class="h3">Login</p>
+          <div style="text-align: center">
+              <input placeholder="Login:" type="text" @bind="_input.Login">
+              <input placeholder="Password:" type="password" @bind="_input.Password">
+              <button  class="btn btn-primary" onclick="@LoginClick">Login</button>
+          </div>
+</div>
+@code {
+    static private Input _input = new();
+    private List<SaveUser> _result;
+    bool _a = false;
+    private class Input
+    {
+        public string Login { get; set; }
+        public string Password { get; set; }
+    }
+
+    private async Task LoginClick()
+    {
+        using (var client = new HttpClient())
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync($"http://localhost:5003/Api/GetControllers/GetLogin?login={_input.Login}&password={_input.Password}");
+            var context = await responseMessage.Content.ReadAsStringAsync();
+            _result = JsonConvert.DeserializeObject<List<SaveUser>>(context)!;
+            if (_result.Count == 1)
+            {
+                UsdUser._usdUser = _result.ToList();
+                NavigationMan.NavigateTo("/Home");
+            }
+        }
+    }
+
+}
