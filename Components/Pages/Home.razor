@@ -1,7 +1,27 @@
 ﻿@page "/Home"
-@using BlazorApp2.Components.Models
-
+@rendermode InteractiveServer
+@inject NavigationManager Navigation
+@using Newtonsoft.Json
 <PageTitle>Home</PageTitle>
 
-<var>
-</var>
+
+<div style="display: grid; grid-template-rows: 1fr 1fr 1fr; grid-template-columns: 1fr 1fr 1fr; width: 100vw; height: 100vh">
+    <div style="grid-column: 2; grid-row: 1; text-align-all: center">
+        <h3>Administrator</h3>
+    </div>
+    <div style="grid-row: 2; grid-column: 2;">
+        <button onclick="@HistoriButton" style="width: 100%">
+            <span>Histori</span>
+        </button>
+    </div>
+</div>
+ 
+    
+@code{
+
+    private void HistoriButton()
+    {
+        Navigation.NavigateTo("/HistoriP");
+    }
+    
+}

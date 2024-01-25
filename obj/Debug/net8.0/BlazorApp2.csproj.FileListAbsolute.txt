@@ -31,3 +31,4 @@ C:\Users\prdb\RiderProjects\BlazorApp2\BlazorApp2\obj\Debug\net8.0\BlazorApp2.pd
 C:\Users\prdb\RiderProjects\BlazorApp2\BlazorApp2\obj\Debug\net8.0\BlazorApp2.genruntimeconfig.cache
 C:\Users\prdb\RiderProjects\BlazorApp2\BlazorApp2\obj\Debug\net8.0\ref\BlazorApp2.dll
 C:\Users\prdb\RiderProjects\BlazorApp2\BlazorApp2\obj\Debug\net8.0\scopedcss\Components\Layout\Test.razor.rz.scp.css
+C:\Users\prdb\RiderProjects\BlazorApp2\BlazorApp2\obj\Debug\net8.0\BlazorApp2.sourcelink.json

@@ -1,0 +1,54 @@
+@page "/HistoriP"
+@attribute [StreamRendering]
+@using Newtonsoft.Json
+<PageTitle>Home</PageTitle>
+
+    
+<table class="table">
+    <thead>
+    <tr>
+        <th>Ip</th>
+        <th>Login</th>
+        <th>Connect</th>
+        <th>Data</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var forecast in _elements!)
+    {
+        <tr>
+            <td>@forecast.Ip</td>
+            <td>@forecast.Login</td>
+            <td>@forecast.Connectuser</td>
+            <td>@forecast.datahistori</td>
+        </tr>
+    }
+    </tbody>
+</table>
+<select>
+    @foreach (var forecast in _elements!)
+    {
+        <option>@forecast.Login, @forecast.Ip, @forecast.datahistori, @forecast.Connectuser</option>
+    }
+</select>
+    
+@code{
+        
+    private List<Histori> _elements = new();
+    protected override async Task OnInitializedAsync()
+    {
+        using (var client = new HttpClient())
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync("http://localhost:5003/Api/GetControllers/GetHistori");
+            string context = await responseMessage.Content.ReadAsStringAsync();
+            _elements = JsonConvert.DeserializeObject<List<Histori>>(context)!;
+        }
+    }
+    private class Histori
+    {
+        public string Login;
+        public string Ip;
+        public DateTime? datahistori;
+        public bool Connectuser;
+    }
+}
