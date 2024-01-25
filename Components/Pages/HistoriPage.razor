@@ -4,33 +4,41 @@
 <PageTitle>Home</PageTitle>
 
     
-<table class="table">
-    <thead>
-    <tr>
-        <th>Ip</th>
-        <th>Login</th>
-        <th>Connect</th>
-        <th>Data</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var forecast in _elements!)
-    {
-        <tr>
-            <td>@forecast.Ip</td>
-            <td>@forecast.Login</td>
-            <td>@forecast.Connectuser</td>
-            <td>@forecast.datahistori</td>
-        </tr>
-    }
-    </tbody>
-</table>
-<select>
+<div style="display: grid; grid-template-columns: 1fr 40vw 1fr; grid-template-rows: 1fr 20vh 1fr">
+    <div style="grid-row: 1; grid-column: 2; display: flex; justify-content: center; align-items: center">
+        <h1>Histori</h1>
+    </div>
+    <div style="grid-row: 2; grid-column: 2; width: 50vw; height: 50vh; overflow-y: auto">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Ip</th>
+                <th>Login</th>
+                <th>Connect</th>
+                <th>Data</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var forecast in _elements!)
+            {
+                <tr>
+                    <td>@forecast.Ip</td>
+                    <td>@forecast.Login</td>
+                    <td>@forecast.Connectuser</td>
+                    <td>@forecast.datahistori</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@*<select>
     @foreach (var forecast in _elements!)
     {
         <option>@forecast.Login, @forecast.Ip, @forecast.datahistori, @forecast.Connectuser</option>
     }
-</select>
+</select>*@
     
 @code{
         
